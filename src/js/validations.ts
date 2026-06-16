@@ -1,9 +1,4 @@
-/**
- * Validates an Ecuadorian ID number.
- * @param {string} id - The ID number to validate.
- * @returns {boolean} - True if the ID number is valid, false otherwise.
- */
-export function validateEcuadorianID(id) {
+export function validateEcuadorianID(id: string): boolean {
   if (!id || id.length !== 10) return false
 
   const provinceCode = +id.slice(0, 2)
@@ -22,13 +17,13 @@ export function validateEcuadorianID(id) {
   return checkDigit === +id.slice(-1)
 }
 
-/**
- * Validates an Ecuadorian RUC number.
- * @param {string} ruc - The RUC number to validate.
- * @returns {Object} - An object containing validation result and type.
- */
-export function validateRUC(ruc) {
-  const result = {
+export interface RUCResult {
+  isValid: boolean
+  type: string | null
+}
+
+export function validateRUC(ruc: string): RUCResult {
+  const result: RUCResult = {
     isValid: false,
     type: null,
   }
@@ -39,7 +34,7 @@ export function validateRUC(ruc) {
   const id = ruc.slice(0, 10)
   const typeCode = +ruc.slice(2, 3)
 
-  if (/^[0-5]$/.test(typeCode)) {
+  if (/^[0-5]$/.test(String(typeCode))) {
     result.isValid = validateEcuadorianID(id)
     result.type = 'RUC de persona natural'
   }
@@ -57,12 +52,7 @@ export function validateRUC(ruc) {
   return result
 }
 
-/**
- * Validates a legal entity RUC number.
- * @param {string} ruc - The RUC number to validate.
- * @returns {boolean} - True if the RUC number is valid, false otherwise.
- */
-function validateLegalEntityRUC(ruc) {
+function validateLegalEntityRUC(ruc: string): boolean {
   const coefficients = [4, 3, 2, 7, 6, 5, 4, 3, 2]
   const checkDigit = +ruc.slice(-1)
 
@@ -81,14 +71,9 @@ function validateLegalEntityRUC(ruc) {
   }
 }
 
-/**
- * Validates a public entity RUC number.
- * @param {string} ruc - The RUC number to validate.
- * @returns {boolean} - True if the RUC number is valid, false otherwise.
- */
-function validatePublicEntityRUC(ruc) {
+function validatePublicEntityRUC(ruc: string): boolean {
   const coefficients = [3, 2, 7, 6, 5, 4, 3, 2]
-  const checkDigit = +ruc.slice(8, 9) // Update to extract the 9th digit as the check digit
+  const checkDigit = +ruc.slice(8, 9)
 
   try {
     const totalSum = ruc

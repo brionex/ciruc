@@ -1,0 +1,196 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-surface: #0b0b14;
+  --color-surface-secondary: #13131f;
+  --color-surface-tertiary: #1c1c2e;
+  --color-on-surface: #e8e8f0;
+  --color-on-surface-secondary: #9494b0;
+  --color-outline: #2a2a3e;
+  --color-primary: #8b5cf6;
+  --color-primary-hover: #a78bfa;
+  --color-error: #ef4444;
+  --color-success: #22c55e;
+  --font-family-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-family-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-custom {
+  animation: spin 1s linear infinite;
+}
+
+pre,
+code,
+kbd,
+samp {
+  font-family: var(--font-family-mono);
+}
+
+/* Validation icon visibility */
+.tabs__val .ti-loader,
+.tabs__val .ti-circle-check,
+.tabs__val .ti-circle-x {
+  display: none;
+  font-size: 1.35rem;
+}
+
+.tabs__val[data-status='load'] .ti-loader {
+  display: inline-block;
+}
+
+.tabs__val[data-status='success'] .ti-circle-check {
+  display: inline-block;
+}
+
+.tabs__val[data-status='error'] .ti-circle-x {
+  display: inline-block;
+}
+
+/* Prose styles for rendered Markdown (doc.html) */
+#content h1 {
+  margin-top: 3rem;
+  margin-bottom: 0.75rem;
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: var(--color-on-surface);
+  border-bottom: 1px solid var(--color-outline);
+  padding-bottom: 0.5rem;
+}
+
+#content h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 0.5rem;
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  color: var(--color-on-surface);
+}
+
+#content h3 {
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--color-on-surface);
+}
+
+#content p {
+  margin-top: 1rem;
+  line-height: 1.75;
+  color: var(--color-on-surface-secondary);
+}
+
+#content pre {
+  margin: 1.25rem 0;
+  padding: 1rem;
+  overflow-x: auto;
+  border-radius: 0.75rem;
+  border: 1px solid var(--color-outline);
+  background-color: var(--color-surface);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}
+
+#content code {
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.375rem;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-outline);
+  color: var(--color-on-surface);
+  font-size: 0.875em;
+}
+
+#content pre code {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+}
+
+#content table {
+  width: 100%;
+  margin: 1.25rem 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--color-outline);
+  background-color: var(--color-surface-secondary);
+  color: var(--color-on-surface);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  font-size: var(--text-sm);
+}
+
+#content th,
+#content td {
+  border-bottom: 1px solid var(--color-outline);
+  padding: 0.5rem 0.75rem;
+  text-align: center;
+}
+
+#content th:not(:last-child),
+#content td:not(:last-child) {
+  border-right: 1px solid var(--color-outline);
+}
+
+#content tr:last-child th,
+#content tr:last-child td {
+  border-bottom: none;
+}
+
+#content th {
+  background-color: var(--color-surface);
+  font-weight: 600;
+}
+
+#content ul {
+  list-style: disc;
+  margin-left: 1.5rem;
+  margin-top: 0.75rem;
+  color: var(--color-on-surface-secondary);
+  line-height: 1.75;
+}
+
+#content ol {
+  list-style: decimal;
+  margin-left: 1.5rem;
+  margin-top: 0.75rem;
+  color: var(--color-on-surface-secondary);
+  line-height: 1.75;
+}
+
+#content li {
+  margin-top: 0.25rem;
+}
+
+#content blockquote {
+  margin: 1.25rem 0;
+  padding: 0.75rem 1.25rem;
+  border-left: 4px solid var(--color-primary);
+  background-color: var(--color-surface);
+  border-radius: 0 0.75rem 0.75rem 0;
+  color: var(--color-on-surface-secondary);
+  font-style: italic;
+}
+
+#content a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+#content a:hover {
+  color: var(--color-primary-hover);
+}
+
+#content strong {
+  color: var(--color-on-surface);
+}
+
+#content hr {
+  margin: 2rem 0;
+  border-color: var(--color-outline);
+}

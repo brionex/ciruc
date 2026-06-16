@@ -1,12 +1,11 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
   <head>
-    <!-- Metadata -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Valida cédulas de ciudadanía y RUC en Ecuador usando métodos oficiales como el Módulo 10 y Módulo 11."
+      content="Valida cédulas de ciudadanía y RUC en Ecuador con los algoritmos oficiales Módulo 10 y Módulo 11."
     />
     <meta name="author" content="@brionex en github" />
     <meta
@@ -14,104 +13,139 @@
       content="verificación cédula, RUC, Ecuador, Módulo 10, Módulo 11"
     />
     <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#ffffff" />
-    <meta
-      property="og:title"
-      content="Verificación de Cédula y RUC - Ecuador"
-    />
+    <meta name="theme-color" content="#0b0b14" />
+    <meta property="og:title" content="Validador de Cédula y RUC · Ecuador" />
     <meta
       property="og:description"
-      content="Valida cédulas de ciudadanía y RUC en Ecuador usando métodos oficiales como el Módulo 10 y Módulo 11."
+      content="Verifica cédulas de ciudadanía y RUC ecuatorianos con los algoritmos oficiales del SRI."
     />
-    <meta property="og:image" content="public/img/picture.png" />
+    <meta property="og:image" content="/img/picture.png" />
     <meta property="og:url" content="https://github.com/brionex/ciruc" />
     <meta property="og:type" content="tool" />
-
-    <!-- Title and favicon -->
-    <title>Verificación de Cédula y RUC - Ecuador</title>
-    <link rel="shortcut icon" href="public/favicon.svg" type="image/x-icon" />
-
-    <!-- Load FontAwesome icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-
-    <!-- Links to CSS and JS resources -->
-    <link rel="stylesheet" href="public/css/base.css" />
-    <link rel="stylesheet" href="public/fonts/fonts.css" />
-    <link rel="stylesheet" href="public/css/global.css" />
-    <link rel="stylesheet" href="public/css/home.css" />
-
-    <script defer type="module" src="public/js/main.js"></script>
+    <title>Validador de Cédula y RUC · Ecuador</title>
+    <link rel="shortcut icon" href="/favicon.svg" type="image/x-icon" />
+    <script defer type="module" src="/src/js/main.ts"></script>
   </head>
-  <body>
-    <main class="main container">
-      <header>
-        <h1>Verificación de Números de Cédula y RUC en Ecuador</h1>
-        <p>
-          Valida la autenticidad de los números de cédula de ciudadanía y RUC
-          ecuatorianos utilizando métodos oficiales. La cédula de ciudadanía se
-          verifica mediante el algoritmo del Módulo 10, mientras que el RUC se
-          valida con el Módulo 11. Estos algoritmos aseguran la precisión y
-          legitimidad de los números de identificación.
-        </p>
-      </header>
-
-      <div class="tabs" data-tab-active="cedula">
-        <div>
-          <ul class="tabs__list">
-            <li class="active" data-tab="cedula">Cédula</li>
-            <li data-tab="ruc">RUC</li>
-            <hr />
-            <a
-              class="fa-solid fa-file-lines"
-              href="public/doc/doc.html"
-              title="Leer proceso"
-            ></a>
-            <a
-              class="fa-brands fa-github"
-              href="https://github.com/brionex/ciruc"
-              target="_blank"
-              title="Repositorio - brionex"
-            ></a>
-          </ul>
-
-          <div class="tabs__val">
-            <span></span>
-            <i class="fa-solid fa-circle-notch spin load"></i>
-            <i class="fa-solid fa-circle-check success"></i>
-            <i class="fa-solid fa-circle-xmark error"></i>
+  <body class="min-h-dvh bg-surface text-on-surface antialiased flex flex-col">
+    <main class="flex-1 w-full max-w-6xl mx-auto px-6 sm:px-10 py-16 sm:py-24">
+      <div class="flex flex-col lg:flex-row gap-16 lg:gap-24">
+        <header class="w-full lg:w-80 xl:w-96 flex-shrink-0">
+          <div class="lg:sticky lg:top-24 space-y-6">
+            <h1 class="text-4xl sm:text-5xl font-bold leading-tight tracking-tight">
+              Validador de Cédula y RUC
+            </h1>
+            <p class="text-base sm:text-lg leading-relaxed text-on-surface-secondary">
+              Verifica la autenticidad de cédulas de ciudadanía y RUC ecuatorianos con los
+              algoritmos oficiales del SRI. La cédula se valida mediante el
+              <strong class="text-on-surface font-semibold">Módulo 10</strong> y el RUC con el
+              <strong class="text-on-surface font-semibold">Módulo 11</strong>, cubriendo personas
+              naturales, sociedades y entidades públicas.
+            </p>
           </div>
-        </div>
+        </header>
 
-        <section class="tabs__forms">
-          <form class="show" data-form="cedula">
-            <h3>Validar numero de cédula</h3>
-            <input
-              type="number"
-              id="input-cedula"
-              placeholder="Ingresar cédula aquí"
-            />
-          </form>
+        <section class="flex-1 w-full max-w-xl">
+          <div
+            class="tabs bg-surface-secondary rounded-3xl border border-outline p-8 sm:p-10 shadow-2xl shadow-black/40"
+            data-tab-active="cedula"
+          >
+            <div class="flex items-center gap-3">
+              <ul class="tabs__list flex items-center gap-2" role="tablist">
+                <li
+                  class="tabs__tab px-5 py-2 rounded-xl text-sm font-semibold cursor-pointer select-none border border-outline bg-surface text-on-surface-secondary transition-all duration-200 hover:text-on-surface hover:border-on-surface-secondary data-[active=true]:bg-primary/15 data-[active=true]:text-primary data-[active=true]:border-primary"
+                  role="tab"
+                  data-tab="cedula"
+                  data-active="true"
+                >
+                  Cédula
+                </li>
+                <li
+                  class="tabs__tab px-5 py-2 rounded-xl text-sm font-semibold cursor-pointer select-none border border-outline bg-surface text-on-surface-secondary transition-all duration-200 hover:text-on-surface hover:border-on-surface-secondary data-[active=true]:bg-primary/15 data-[active=true]:text-primary data-[active=true]:border-primary"
+                  role="tab"
+                  data-tab="ruc"
+                  data-active="false"
+                >
+                  RUC
+                </li>
+              </ul>
 
-          <form data-form="ruc">
-            <h3>Validar RUC</h3>
-            <input
-              type="number"
-              id="input-ruc"
-              placeholder="Ingresar RUC aquí"
-            />
-          </form>
+              <div class="tabs__val ml-auto flex items-center gap-2 text-sm">
+                <i class="ti ti-loader animate-spin-custom text-primary"></i>
+                <i class="ti ti-circle-check text-success"></i>
+                <i class="ti ti-circle-x text-error"></i>
+                <span class="text-on-surface-secondary"></span>
+              </div>
+
+              <span class="w-px h-6 bg-outline flex-shrink-0"></span>
+
+              <div class="flex items-center gap-1">
+                <a
+                  class="flex items-center justify-center w-9 h-9 rounded-xl text-on-surface-secondary hover:text-primary border border-transparent hover:border-primary/30 transition-all duration-200"
+                  href="/doc.html"
+                  title="Leer proceso"
+                  aria-label="Documentación del proceso de validación"
+                >
+                  <i class="ti ti-file-description text-xl"></i>
+                </a>
+                <a
+                  class="flex items-center justify-center w-9 h-9 rounded-xl text-on-surface-secondary hover:text-primary border border-transparent hover:border-primary/30 transition-all duration-200"
+                  href="https://github.com/brionex/ciruc"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Repositorio en GitHub"
+                  aria-label="Código fuente en GitHub"
+                >
+                  <i class="ti ti-brand-github text-xl"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="tabs__forms mt-16">
+              <form class="block" data-form="cedula">
+                <h3 class="text-center font-semibold text-on-surface text-base">
+                  Validar número de cédula
+                </h3>
+                <input
+                  type="text"
+                  inputmode="numeric"
+                  pattern="[0-9]*"
+                  id="input-cedula"
+                  placeholder="Ingresar cédula aquí"
+                  maxlength="10"
+                  autocomplete="off"
+                  class="mt-6 w-full px-6 py-4 text-center text-lg font-mono bg-surface border border-outline rounded-xl text-on-surface placeholder:text-on-surface-secondary/50 outline-none transition-all duration-200 focus:border-primary focus:ring-1 focus:ring-primary data-[valid=true]:border-success data-[valid=true]:ring-success data-[valid=false]:border-error data-[valid=false]:ring-error"
+                />
+              </form>
+              <form class="hidden" data-form="ruc">
+                <h3 class="text-center font-semibold text-on-surface text-base">
+                  Validar RUC
+                </h3>
+                <input
+                  type="text"
+                  inputmode="numeric"
+                  pattern="[0-9]*"
+                  id="input-ruc"
+                  placeholder="Ingresar RUC aquí"
+                  maxlength="13"
+                  autocomplete="off"
+                  class="mt-6 w-full px-6 py-4 text-center text-lg font-mono bg-surface border border-outline rounded-xl text-on-surface placeholder:text-on-surface-secondary/50 outline-none transition-all duration-200 focus:border-primary focus:ring-1 focus:ring-primary data-[valid=true]:border-success data-[valid=true]:ring-success data-[valid=false]:border-error data-[valid=false]:ring-error"
+                />
+              </form>
+            </div>
+          </div>
         </section>
       </div>
+    </main>
 
-      <!-- Footer Section -->
-      <footer>
+    <footer class="w-full border-t border-outline">
+      <div
+        class="max-w-6xl mx-auto px-6 sm:px-10 py-8 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-4 text-base text-on-surface-secondary"
+      >
         <p>
           Creado por
           <a
-            href="https://brionex.xyz"
+            class="underline underline-offset-2 decoration-outline hover:text-primary transition-colors"
+            href="https://github.com/brionex"
             target="_blank"
             rel="noopener noreferrer"
             >brionex</a
@@ -120,13 +154,14 @@
         <p>
           Basado en el proyecto de
           <a
+            class="underline underline-offset-2 decoration-outline hover:text-primary transition-colors"
             href="https://github.com/bymoxb"
             target="_blank"
             rel="noopener noreferrer"
             >@bymoxb</a
           >.
         </p>
-      </footer>
-    </main>
+      </div>
+    </footer>
   </body>
 </html>
