@@ -1,9 +1,9 @@
 import { defineConfig } from 'vite'
 import tailwindcss from '@tailwindcss/vite'
 
-export default defineConfig(({ command }) => ({
+export default defineConfig(({ mode }) => ({
   plugins: [tailwindcss()],
-  base: command === 'build' ? '/ciruc/' : '/',
+  base: mode === 'production' ? '/ciruc/' : '/',
   build: {
     outDir: 'docs',
     rollupOptions: {
