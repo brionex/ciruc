@@ -4,7 +4,7 @@ import { marked } from 'marked'
 
 const content = document.getElementById('content')!
 
-fetch('/doc/doc.md')
+fetch('./doc/doc.md')
   .then((response) => {
     if (!response.ok) throw new Error('Error al cargar el contenido')
     return response.text()
